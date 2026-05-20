@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 📝 Project Description
 
-## Getting Started
+**DesignHub** is a modern, comprehensive Interior Design and Tutor Management Platform built with the **Next.js App Router**, **Tailwind CSS**, and **Better-Auth** (or JWT). The platform bridges the gap between expert interior design mentors (tutors) and students or clients looking to master design concepts or book consultation slots.
 
-First, run the development server:
+With a seamless, fully responsive user interface and robust database integration, users can easily discover expert tutors, view exhaustive profiles, and manage their design journey efficiently.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+*   **🔒 Secure Authentication:** Powered by enterprise-grade session authentication (Better-Auth) protecting critical user workflows.
+*   **👥 Dynamic Tutor Directory:** Users can browse a comprehensive list of interior design tutors with options to filter by subjects (e.g., Space Planning, 3D Modeling, Architecture History).
+*   **🛡️ Route Protection (Middleware):** Advanced Next.js Middleware guarantees that unauthorized guests cannot view sensitive information, add tutors, or access personal booking pipelines.
+*   **📊 Dynamic Dashboards & Analytics:** Interactive "Friendship & Connection Analytics" data visualization charts to track engagement and platform connectivity.
+*   **💼 Booking Management:** Clients can instantly secure consultation slots with real-time tracking of available slots, fee calculations, and active bookings.
+*   **⚙️ Full CRUD Capabilities:** Authorized tutors can effortlessly create, read, update, and delete (CRUD) their professional profiles and listings.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*   **Front-end:** Next.js (App Router), React.js, Tailwind CSS
+*   **Back-end:** Node.js, Express.js (or Next.js API Routes)
+*   **Database:** MongoDB 
+*   **Authentication:** Better-Auth / JSON Web Tokens (JWT)
+*   **State & Requests:** Axios, React Hooks, React-Hot-Toast, SweetAlert2
