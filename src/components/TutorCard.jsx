@@ -4,29 +4,31 @@ import { MapPin, Clock, Building2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import TutorImage from "./TutorImage";
 
+export const dynamic = "force-dynamic";
+
 const TutorCard = async () => {
   let featuredTutors = [];
 
   try {
-  
-  const baseURL = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL;
-  
-  const res = await fetch(`${baseURL}/tutors`, {
-    cache: "no-store",
-  });
+    
+    const baseURL = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL;
+    
+    const res = await fetch(`${baseURL}/tutors`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch tutors data");
-  }
+    if (!res.ok) {
+      throw new Error("Failed to fetch tutors data");
+    }
 
-  const data = await res.json();
-  
-  if (Array.isArray(data)) {
-    featuredTutors = data.slice(0, 3);
+    const data = await res.json();
+    
+    if (Array.isArray(data)) {
+      featuredTutors = data.slice(0, 3);
+    }
+  } catch (error) {
+    console.error("❌ TutorCard Fetching Error:", error.message);
   }
-} catch (error) {
-  console.error("❌ TutorCard Fetching Error:", error.message);
-}
 
   const getInitials = (name) => {
     if (!name) return "TR";
@@ -72,7 +74,7 @@ const TutorCard = async () => {
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-6">
-      
+      {/* হেডার সেকশন */}
       <div className="flex justify-between items-end">
         <div>
           <p className="text-xs font-semibold uppercase tracking-wider text-[#1e6b65]">
@@ -89,7 +91,6 @@ const TutorCard = async () => {
         </Link>
       </div>
 
-      
       {featuredTutors.length === 0 ? (
         <div className="flex flex-col items-center justify-center p-12 bg-slate-50 rounded-2xl border border-dashed border-slate-200 text-center">
           <AlertCircle className="text-slate-400 mb-3" size={32} />
@@ -107,13 +108,14 @@ const TutorCard = async () => {
                 key={tutor._id}
                 className="border border-slate-100 shadow-sm rounded-2xl overflow-hidden bg-white hover:shadow-md transition-shadow group"
               >
+                
                 <div className={`h-48 w-full ${styles.bg} flex items-center justify-center relative overflow-hidden`}>
                   <TutorImage 
                     photoUrl={tutor.photoUrl} 
                     tutorName={tutor.tutorName} 
                     styles={styles} 
                     initials={getInitials(tutor.tutorName)} 
-                  />
+                    />
 
                   <span className={`absolute top-3 right-3 text-[10px] font-bold px-2.5 py-0.5 rounded-full z-20 ${styles.badgeBg} ${styles.badgeText} shadow-sm`}>
                     {tutor.teachingMode}

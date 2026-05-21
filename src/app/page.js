@@ -4,6 +4,7 @@ import MediQueue from "@/components/MediQueue";
 import Reviews from "@/components/Reviews";
 import Subjects from "@/components/Subjects";
 import TutorCard from "@/components/TutorCard";
+export const dynamic = "force-dynamic";
 
 import Image from "next/image";
 
@@ -12,7 +13,9 @@ export default function Home() {
     <div>
       <HomePage/>
       <HeroSection/>
-      <TutorCard/>
+      <main>
+      <TutorCard />
+    </main>
       <MediQueue/>
       <Subjects/>
       <Reviews/>
