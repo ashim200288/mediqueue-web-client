@@ -8,24 +8,25 @@ const TutorCard = async () => {
   let featuredTutors = [];
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/tutors`, {
-      cache: "no-store",
-    });
+  
+  const baseURL = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL;
+  
+  const res = await fetch(`${baseURL}/tutors`, {
+    cache: "no-store",
+  });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch tutors data");
-    }
-
-    const data = await res.json();
-    
-    
-    if (Array.isArray(data)) {
-      featuredTutors = data.slice(0, 3);
-    }
-  } catch (error) {
-    console.error("❌ TutorCard Fetching Error:", error.message);
-    
+  if (!res.ok) {
+    throw new Error("Failed to fetch tutors data");
   }
+
+  const data = await res.json();
+  
+  if (Array.isArray(data)) {
+    featuredTutors = data.slice(0, 3);
+  }
+} catch (error) {
+  console.error("❌ TutorCard Fetching Error:", error.message);
+}
 
   const getInitials = (name) => {
     if (!name) return "TR";

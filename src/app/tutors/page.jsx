@@ -32,7 +32,7 @@ const Page = () => {
         photoUrl: ""
     });
 
-    const serverUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const serverUrl = process.env.NEXT_PUBLIC_API_URL || `${process.env.NEXT_PUBLIC_SERVER_URL}`;
 
     // Fetch Tutors
     const fetchTutors = async () => {
