@@ -4,14 +4,14 @@ import React from 'react';
 import { IoStar } from 'react-icons/io5';
 
 const Reviews = () => {
-    // ইমেজের ডেটা অনুযায়ী রিভিউ লিস্ট array
+    
     const reviewData = [
         {
             id: 1,
             name: "Rahim Sarkar",
             role: "HSC student, Dhaka",
             initials: "RS",
-            avatarBg: "bg-[#1aa274]", // থিম গ্রিন
+            avatarBg: "bg-[#1aa274]", 
             review: `"Booked my first math session within 5 minutes. The slot system is brilliant — no back-and-forth with the tutor at all."`
         },
         {
@@ -19,7 +19,7 @@ const Reviews = () => {
             name: "Nusrat Alam",
             role: "SSC student, Sylhet",
             initials: "NA",
-            avatarBg: "bg-[#1d63b8]", // থিম ব্লু
+            avatarBg: "bg-[#1d63b8]", 
             review: `"Found a chemistry tutor in Sylhet in under a minute. The filters are spot-on. My grades improved in just 3 weeks."`
         },
         {
@@ -27,7 +27,7 @@ const Reviews = () => {
             name: "Amin Khan",
             role: "Tutor, Chittagong",
             initials: "AK",
-            avatarBg: "bg-[#784315]", // থিম ব্রাউন
+            avatarBg: "bg-[#784315]", 
             review: `"As a tutor, managing my schedule used to be a nightmare. MediQueue handles all of it automatically. Highly recommended."`
         },
         {

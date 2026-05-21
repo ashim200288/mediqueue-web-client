@@ -1,20 +1,4 @@
 
-// import { betterAuth } from "better-auth";
-// import { MongoClient } from "mongodb";
-// import { mongodbAdapter } from "better-auth/adapters/mongodb";
-
-// const client = new MongoClient(process.env.MONGODB_URI);
-// const db = client.db("mediqueue");
-
-// export const auth = betterAuth({
-//   database: mongodbAdapter(db, {
-//     client
-//   }),
-//   emailAndPassword: { 
-//     enabled: true, 
-//   },
-// });
-
 import dns from "node:dns";
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
@@ -27,10 +11,11 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 import { betterAuth } from "better-auth";
+import { jwt } from "better-auth/plugins"
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
-const uri = process.env.MONGODB_URI || "mongodb+srv://MediQueue:90lhGAJ17RJ3NOqK@cluster0.4ofu8sq.mongodb.net/mediqueue?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI || "";
 
 // 🌟 বিল্ড টাইম ক্র্যাশ এড়ানোর কন্ডিশন (প্রোডাকশন ডেপ্লয়মেন্ট সেফটি)
 if (!uri && process.env.NODE_ENV === "production") {
@@ -53,4 +38,20 @@ export const auth = betterAuth({
   emailAndPassword: { 
     enabled: true, 
   },
+  socialProviders: {
+        google: { 
+            clientId: process.env.GOOGLE_CLIENT_ID, 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
+        }, 
+    },
+  session:{
+    cookieCache:{
+      enabled: true,
+      strategy: "jwt",
+      maxAge: 7*24*60*60,
+    }
+  },
+  plugins: [
+        jwt()
+    ]
 });

@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Link from 'next/link';
 
 export default function BookingForm({ tutorId, tutorName, totalSlots: initialSlots, sessionStartDate }) {
     
@@ -186,6 +187,7 @@ export default function BookingForm({ tutorId, tutorName, totalSlots: initialSlo
                 </div>
 
                 
+                <Link href="/my-bookings">
                 <Button 
                     type="submit" 
                     isLoading={submitting}
@@ -202,6 +204,7 @@ export default function BookingForm({ tutorId, tutorName, totalSlots: initialSlo
                         ? "Booking Not Allowed Yet" 
                         : "Confirm Booking"}
                 </Button>
+                </Link>
             </form>
         </div>
     );

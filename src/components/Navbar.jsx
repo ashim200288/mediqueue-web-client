@@ -25,7 +25,6 @@ const Navbar = () => {
         return names[0][0].toUpperCase();
     };
 
-    // 🌟 ছবি আসলেই ডাটাবেজে ভ্যালিড আকারে আছে কিনা তা নিশ্চিত করার চেক
     const hasValidImage = user?.image && user.image.trim() !== "";
 
     const handleLogout = async () => {
@@ -115,7 +114,7 @@ const Navbar = () => {
                                     onClick={() => setIsProfileOpen(!isProfileOpen)}
                                     className="flex items-center justify-center w-9 h-9 rounded-md bg-emerald-600 text-white font-bold text-sm tracking-wider focus:outline-none hover:bg-emerald-700 transition-colors overflow-hidden"
                                 >
-                                    {/* 🌟 কন্ডিশনাল এবং ব্রোকেন ইমেজ হ্যান্ডলিং */}
+                                    
                                     {hasValidImage ? (
                                         <img 
                                             src={user.image} 
@@ -178,7 +177,7 @@ const Navbar = () => {
                         <div className="w-full border-t border-slate-100 dark:border-emerald-900 pt-4 mt-2 flex items-center justify-between">
                             <div className="flex items-center space-x-3">
                                 <div className="flex items-center justify-center w-9 h-9 rounded-md bg-emerald-600 text-white font-bold text-sm overflow-hidden">
-                                    {/* 🌟 মোবাইল ভিউর জন্যও একই ইমেজ সেফটি চেক */}
+                                   
                                     {hasValidImage ? (
                                         <img 
                                             src={user.image} 

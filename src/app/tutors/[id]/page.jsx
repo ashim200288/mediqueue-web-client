@@ -1,27 +1,52 @@
 import React from 'react';
 import BookingForm from "./BookingForm";
+import { headers } from 'next/headers';
+import { auth } from "@/lib/auth"; // পাথ ঠিক আছে
 
 const DetailsPage = async ({ params }) => {
     
     const { id } = await params;
-
-    const serverUrl = process.env.NEXT_PUBLIC_API_UR || "http://localhost:5000";
-
-    const res = await fetch(`${serverUrl}/tutors/${id}`, {
-        cache: 'no-store'
-    });
     
-    if (!res.ok) {
+    let token = null;
+    try {
+        const reqHeaders = await headers(); 
+        const sessionData = await auth.api.getToken({
+            headers: reqHeaders
+        });
+        token = sessionData?.token;
+        console.log("Better Auth Token Status:", token ? "Token Found ✓" : "No Token Found ✗");
+    } catch (authError) {
+        console.error("Better-Auth Safe Catch Error:", authError.message);
+    }
+
+    const serverUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
+    let tutor = null;
+    try {
+        const res = await fetch(`${serverUrl}/tutors/${id}`, {
+            method: 'GET',
+            cache: 'no-store',
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token && { 'Authorization': `Bearer ${token}` })
+            }
+        });
+
+        if (res.ok) {
+            tutor = await res.json();
+        }
+    } catch (fetchError) {
+        console.error("Backend Fetch Error:", fetchError.message);
+    }
+    
+    if (!tutor) {
         return (
             <div className="max-w-4xl mx-auto p-6 text-center text-red-500 font-bold mt-20">
-                ❌ Failed to load tutor details. Please check if your Express Server is running on Port 5000!
+                ❌ Failed to load tutor details. Please check if your Express Server is running on Port 5000 and the route is secure!
             </div>
         );
     }
 
-    const tutor = await res.json();
-
-    
     const { 
         _id,
         tutorName = "Tutor Name", 
@@ -33,8 +58,7 @@ const DetailsPage = async ({ params }) => {
         experience = 0, 
         location = "Location",
         sessionStartDate 
-    } = tutor || {};
-
+    } = tutor;
 
     const getInitials = (name) => {
         if (!name || name === "Tutor Name") return "TR";
@@ -48,8 +72,8 @@ const DetailsPage = async ({ params }) => {
     return (
         <div className="max-w-4xl mx-auto p-6 space-y-8">
             
-            
             <div className="bg-[#eefcf7] p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-[#e0f7f0]">
+                
                 <div className="w-20 h-20 bg-[#a2e1cc] rounded-2xl flex items-center justify-center shadow-sm shrink-0">
                     <span className="text-2xl font-black text-[#1e6b65]">
                         {getInitials(tutorName)}
@@ -84,7 +108,6 @@ const DetailsPage = async ({ params }) => {
                 </div>
             </div>
 
-          
             <BookingForm 
                 tutorId={_id || id} 
                 tutorName={tutorName} 

@@ -14,18 +14,16 @@ const TutorImage = ({ photoUrl, tutorName, styles, initials }) => {
     }
 
     let url = photoUrl.trim();
-    setIsError(false); // নতুন URL আসলে এরর স্টেট রিসেট করুন
+    setIsError(false); 
 
-    // ImgBB এর যেকোনো সাধারণ পেজ লিংক হ্যান্ডেল করার লজিক
     if (url.includes("ibb.co") && !url.match(/\.(jpeg|jpg|gif|png|webp)$/i)) {
-      // ট্রেইলিং স্লাশ (/) এবং কুয়েরি প্যারামিটার থাকলে তা রিমুভ করা
+      
       const cleanUrl = url.split("?")[0].replace(/\/$/, "");
       const urlParts = cleanUrl.split("/");
       const imageId = urlParts[urlParts.length - 1];
 
       if (imageId) {
-        // নোট: i.ibb.co ডোমেনে সরাসরি ছবির আসল নাম না দিলে অনেক সময় 404 আসে।
-        // যদি কাজ না করে, সমাধান ২ (Direct Link) ব্যবহার করাই ১০০% নিরাপদ।
+       
         url = `https://i.ibb.co/${imageId}/image.png`;
       }
     }
@@ -53,7 +51,6 @@ const TutorImage = ({ photoUrl, tutorName, styles, initials }) => {
         />
       )}
 
-      {/* ইমেজ লোড না হলে বা এরর হলে এই ইনিশিয়াল নেম লেয়ারটি দেখা যাবে */}
       {!hasImage && (
         <h2 className={`text-4xl font-black tracking-wider ${styles?.text || "text-slate-700"} absolute z-0 select-none`}>
           {initials || "TR"}

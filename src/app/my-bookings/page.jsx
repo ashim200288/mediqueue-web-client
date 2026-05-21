@@ -28,9 +28,8 @@ export default function MyBookingsPage() {
         fetchMyBookings();
     }, [user?.email]);
 
-    // ❌ বুকিং ক্যানসেল করার হ্যান্ডলার ফাংশন
     const handleCancelBooking = async (bookingId) => {
-        // ডিলিট করার আগে ইউজারের কনফার্মেশন নেওয়া
+        
         const result = await Swal.fire({
             title: "Are you sure?",
             text: "Do you want to cancel this booked session?",
@@ -46,7 +45,6 @@ export default function MyBookingsPage() {
             try {
                 const serverUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
                 
-                // ব্যাকঅ্যান্ডে ডিলিট রিকোয়েস্ট পাঠানো
                 const res = await axios.delete(`${serverUrl}/api/bookings/${bookingId}`);
 
                 if (res.data.success) {
@@ -57,7 +55,6 @@ export default function MyBookingsPage() {
                         confirmButtonColor: "#1e6b65"
                     });
                     
-                    // স্টেট আপডেট করে রি-রেন্ডার করা (অথবা আবার fetchMyBookings() কল করা)
                     setBookings(prev => prev.filter(booking => booking._id !== bookingId));
                 }
             } catch (err) {
@@ -85,7 +82,6 @@ export default function MyBookingsPage() {
                         Manage and review all your upcoming appointments with tutors.
                     </p>
                 </div>
-                {/* বর্তমান একটিভ স্টুডেন্ট প্রোফাইল ইন্ডিকেটর */}
                 <div className="bg-[#eefcf7] border border-[#e0f7f0] px-4 py-2 rounded-xl text-right shrink-0">
                     <p className="text-xs font-bold text-[#1e6b65]">{user.displayName}</p>
                     <p className="text-[10px] text-slate-500 font-mono">{user.email}</p>
@@ -148,7 +144,6 @@ export default function MyBookingsPage() {
                                         </span>
                                     </td>
 
-                                    {/* 🛠️ ক্যানসেল বাটন সেকশন */}
                                     <td className="p-4 text-center">
                                         <button
                                             onClick={() => handleCancelBooking(booking._id)}

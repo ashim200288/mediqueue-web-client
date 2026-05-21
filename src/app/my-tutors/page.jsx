@@ -14,7 +14,6 @@ export default function MyTutorsPage() {
 
     const serverUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
     
-    // একটি ডিফল্ট অ্যাভাটার ইমেজ ভেরিয়েবল
     const defaultAvatar = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80";
 
     const fetchAllTutors = async () => {
