@@ -22,9 +22,8 @@ export function proxy(request) {
 
 export const config = {
   matcher: [
-    '/tutors/:path*',
+
     '/add-tutor/:path*',
-    '/my-tutors/:path*',
-    '/my-bookings/:path*',
+    
   ],
 };

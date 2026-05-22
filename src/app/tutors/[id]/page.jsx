@@ -16,7 +16,11 @@ const DetailsPage = async ({ params }) => {
         token = sessionData?.token;
         console.log("Better Auth Token Status:", token ? "Token Found ✓" : "No Token Found ✗");
     } catch (authError) {
-        console.error("Better-Auth Safe Catch Error:", authError.message);
+        
+        const errorMessage = authError instanceof Error ? authError.message : String(authError || "Unauthorized");
+        console.warn("Better-Auth Status:", errorMessage); 
+        
+        token = null; 
     }
 
     const serverUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -36,7 +40,7 @@ const DetailsPage = async ({ params }) => {
             tutor = await res.json();
         }
     } catch (fetchError) {
-        console.error("Backend Fetch Error:", fetchError.message);
+        console.error("Backend Fetch Error:", fetchError?.message || fetchError);
     }
     
     if (!tutor) {
