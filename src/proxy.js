@@ -1,29 +1,16 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { auth } from "./lib/auth";
+import { headers } from "next/headers";
 
-export function proxy(request) {
-  const { pathname } = request.nextUrl;
-
-  const sessionToken = request.cookies.get("better-auth.session_token")?.value;
-
-  const protectedRoutes = ["/add-tutor", "/my-tutors", "/my-bookings"];
-  let isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route));
-
-  const isTutorDetailsPage = pathname.startsWith("/tutors/") && pathname !== "/tutors";
-
-  if ((isProtectedRoute || isTutorDetailsPage) && !sessionToken) {
-    
-    const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set('callbackUrl', pathname); 
-    return NextResponse.redirect(loginUrl);
+export async function proxy(request) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
-
-  return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-
-    '/add-tutor/:path*',
-    
-  ],
+  matcher: ["/tutors/:path*", "/subjects/:path*"],
 };
