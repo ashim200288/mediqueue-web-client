@@ -12,7 +12,7 @@ export default function MyTutorsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editData, setEditData] = useState(null);
 
-    const serverUrl = process.env.NEXT_PUBLIC_API_URL || `${process.env.NEXT_PUBLIC_SERVER_URL}`;
+    const serverUrl = process.env.NEXT_PUBLIC_API_URL ;
     
     const defaultAvatar = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80";
 

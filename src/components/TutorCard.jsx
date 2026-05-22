@@ -11,7 +11,7 @@ const TutorCard = async () => {
 
   try {
     
-    const baseURL = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_SERVER_URL;
+    const baseURL = process.env.NEXT_PUBLIC_API_URL;
     
     const res = await fetch(`${baseURL}/tutors`, {
       cache: "no-store",

@@ -13,7 +13,7 @@ export default function MyBookingsPage() {
     const fetchMyBookings = async () => {
         if (!user?.email) return;
         try {
-            const serverUrl = process.env.NEXT_PUBLIC_API_URL || `${process.env.NEXT_PUBLIC_SERVER_URL}`;
+            const serverUrl = process.env.NEXT_PUBLIC_API_URL;
             const res = await axios.get(`${serverUrl}/my-bookings?email=${user.email}`);
             setBookings(res.data);
         } catch (err) {

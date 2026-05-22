@@ -10,7 +10,7 @@ import { MdOutlineTranslate, MdComputer } from 'react-icons/md';
 import { FiGlobe, FiPlus } from 'react-icons/fi';
 
 const Subjects = () => {
-    // ইমেজের ডেটা অনুযায়ী সাবজেক্ট লিস্ট array
+    
     const subjectData = [
         {
             id: 1,
@@ -24,7 +24,7 @@ const Subjects = () => {
             id: 2,
             title: "Physics",
             count: "96 tutors",
-            // ফিক্সড: কোনো লাইব্রেরির ঝামেলা ছাড়া কাস্টম SVG Atom আইকন
+            
             icon: (
                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="2" fill="currentColor"/>

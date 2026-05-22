@@ -56,7 +56,7 @@ export default function BookingForm({ tutorId, tutorName, totalSlots: initialSlo
                 bookedSlot: selectedDateTime.toISOString()
             };
 
-            const serverUrl = process.env.NEXT_PUBLIC_API_URL || `${process.env.NEXT_PUBLIC_SERVER_URL}`;
+            const serverUrl = process.env.NEXT_PUBLIC_API_URL;
             
             
             const res = await axios.post(`${serverUrl}/api/bookings`, bookingPayload);

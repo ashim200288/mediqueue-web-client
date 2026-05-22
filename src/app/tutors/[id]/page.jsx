@@ -1,7 +1,7 @@
 import React from 'react';
 import BookingForm from "./BookingForm";
 import { headers } from 'next/headers';
-import { auth } from "@/lib/auth"; // পাথ ঠিক আছে
+import { auth } from "@/lib/auth"; 
 
 const DetailsPage = async ({ params }) => {
     
@@ -19,7 +19,7 @@ const DetailsPage = async ({ params }) => {
         console.error("Better-Auth Safe Catch Error:", authError.message);
     }
 
-    const serverUrl = process.env.NEXT_PUBLIC_API_URL || `${process.env.NEXT_PUBLIC_SERVER_URL}`;
+    const serverUrl = process.env.NEXT_PUBLIC_API_URL;
 
     let tutor = null;
     try {
